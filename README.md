@@ -58,7 +58,7 @@ rmse_pollution = np.sqrt(mean_squared_error(y_test, pollution_pred))
 r2_pollution = r2_score(y_test, pollution_pred)
 accuracy_pollution = r2_pollution * 100
 
-print("🏭 Pollution Prediction (PM2.5)")
+print("Pollution Prediction (PM2.5)")
 print("Accuracy (%):", accuracy_pollution)
 
 print("R2 Score:", r2_pollution)
