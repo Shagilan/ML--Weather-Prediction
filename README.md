@@ -11,21 +11,106 @@ To write a program to predict daily temperature , PM2.5 pollution level and Ener
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+1.Import the required libraries and load the weather station dataset using Pandas.
+
+2.Select important features such as humidity, pressure, wind speed, illumination, and CO₂ values, then handle missing values using mean filling.
+
+3.Split the dataset into training and testing sets for three target variables: PM2.5 pollution, temperature, and TSR energy values.
+
+4.Create and train separate DecisionTreeRegressor models for pollution prediction, temperature prediction, and energy prediction.
+
+5.Predict the test data results and evaluate each model using Accuracy (%), RMSE, and R² Score, then display the outputs.
 
 ## Program:
 ```
 /*
 Program to implement the Random Forest Algorithm to predict daily temperature , PM2.5 pollution level and Energy based on environmental sensor data.
-Developed by: 
-RegisterNumber:  
+Developed by: SHAGILAN U
+RegisterNumber: 212224040303
 */
 ```
+```python
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_squared_error, r2_score
 
+data = pd.read_csv("weather.csv")
+
+
+X = data[['hum', 'pressure', 'wind_speed', 'illumination', 'co2']]
+
+X = X.fillna(X.mean())
+
+y_pollution = data['pm2_5'].fillna(data['pm2_5'].mean())
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_pollution, test_size=0.2, random_state=42
+)
+
+pollution_model = DecisionTreeRegressor(random_state=42, max_depth=5)
+pollution_model.fit(X_train, y_train)
+
+pollution_pred = pollution_model.predict(X_test)
+
+rmse_pollution = np.sqrt(mean_squared_error(y_test, pollution_pred))
+r2_pollution = r2_score(y_test, pollution_pred)
+accuracy_pollution = r2_pollution * 100
+
+print("🏭 Pollution Prediction (PM2.5)")
+print("Accuracy (%):", accuracy_pollution)
+
+print("R2 Score:", r2_pollution)
+
+
+print("RMSE:", rmse_pollution)
+print("R2 Score:", r2_pollution)
+
+y_temp = data['tem'].fillna(data['tem'].mean())
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_temp, test_size=0.2, random_state=42
+)
+
+temp_model = DecisionTreeRegressor(random_state=42, max_depth=5)
+temp_model.fit(X_train, y_train)
+
+temp_pred = temp_model.predict(X_test)
+
+rmse_temp = np.sqrt(mean_squared_error(y_test, temp_pred))
+r2_temp = r2_score(y_test, temp_pred)
+accuracy_temp = r2_temp * 100
+print("\nTemperature Prediction")
+print("Accuracy (%):", accuracy_temp)
+print("RMSE:", rmse_temp)
+print("R2 Score:", r2_temp)
+
+y_energy = data['tsr'].fillna(data['tsr'].mean())
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_energy, test_size=0.2, random_state=42
+)
+
+energy_model = DecisionTreeRegressor(random_state=42, max_depth=5)
+energy_model.fit(X_train, y_train)
+
+energy_pred = energy_model.predict(X_test)
+
+rmse_energy = np.sqrt(mean_squared_error(y_test, energy_pred))
+r2_energy = r2_score(y_test, energy_pred)
+accuracy_energy = r2_energy * 100
+print("\nEnergy Prediction (TSR)")
+print("Accuracy (%):", accuracy_energy)
+
+print("RMSE:", rmse_energy)
+print("R2 Score:", r2_energy)
+```
 ## Output:
+
+<img width="297" height="97" alt="image" src="https://github.com/user-attachments/assets/2ecc980a-5eba-407e-8923-d530af49e95f" />
+<img width="308" height="249" alt="image" src="https://github.com/user-attachments/assets/1d5624b0-5ea2-48f8-8db4-a74f81dac87b" />
 
 
 ## Result:
+Thus the program to predict daily temperature , PM2.5 pollution level and Energy based on environmental sensor data using Random Forest Algorithm.
