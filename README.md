@@ -109,6 +109,7 @@ print("R2 Score:", r2_energy)
 ## Output:
 
 <img width="297" height="97" alt="image" src="https://github.com/user-attachments/assets/2ecc980a-5eba-407e-8923-d530af49e95f" />
+
 <img width="308" height="249" alt="image" src="https://github.com/user-attachments/assets/1d5624b0-5ea2-48f8-8db4-a74f81dac87b" />
 
 
